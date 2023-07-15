@@ -29,7 +29,14 @@ const App = () => {
           );
           return;
         }
-        setItems(prevItems => [...prevItems, ...hits]);
+
+        const images = hits.map(hit => ({
+          id: hit.id,
+          webformatURL: hit.webformatURL,
+          largeImageURL: hit.largeImageURL,
+          tags: hit.tags,
+        }));
+        setItems(prevItems => [...prevItems, ...images]);
         setStatus('resolved');
         setTotalHits(totalHits);
       } catch (error) {
